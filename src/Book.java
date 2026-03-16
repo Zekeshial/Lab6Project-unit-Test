@@ -3,7 +3,8 @@ public class Book {
     private String title, ISBN;
     private String[] authors;
     private double price;
-    private int publishedYear;
+    private int publishedYear, checkOutNum;
+    private boolean status;
 
 
     public Book(String title, String[] authors, String ISBN, double price, int publishedYear) {
@@ -12,6 +13,8 @@ public class Book {
         this.ISBN = ISBN;
         this.price = price;
         this.publishedYear = publishedYear;
+        this.checkOutNum = 0;
+        this.status = true;
     }
 
 
@@ -21,7 +24,12 @@ public class Book {
         ISBN = null;
         price = 0;
         publishedYear = 0;
+        this.checkOutNum = 0;
+        this.status = true;
     }
+
+
+
 
     public String getISBN() {
         return ISBN;
@@ -63,6 +71,23 @@ public class Book {
         this.authors = authors;
     }
 
+    public int getCheckOutNum() {
+        return checkOutNum;
+    }
 
+    public void setCheckOutNum(int checkOutNum) {
+        this.checkOutNum = checkOutNum;
+    }
 
+    public void addOneCheckOutNum() {
+        checkOutNum += 1;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

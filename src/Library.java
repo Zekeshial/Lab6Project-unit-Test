@@ -1,23 +1,22 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 
 public class Library {
 
-    HashMap<Book, Boolean> collection = new HashMap();
-    private boolean bookStatus;
-    private int bookCheckOutCounter;
+    ArrayList<Book> collection = new ArrayList<>();
 
-    public HashMap<Book, Boolean> getCollection() {
+
+    public ArrayList<Book> getCollection() {
         return collection;
     }
 
-    public void setCollection(HashMap<Book, Boolean> collection) {
+    public void setCollection(ArrayList<Book> collection) {
         this.collection = collection;
     }
 
     public void addBook(Book book) {
-        collection.put(book, true);
+        collection.add(book);
     }
 
     public void removeBook(Book book) {
@@ -25,23 +24,29 @@ public class Library {
     }
 
     public boolean checkBookStatus(Book chosenBook) {
-        if (collection.containsKey(chosenBook)) {
-            return collection.get(chosenBook);
+        if (collection.contains(chosenBook)) {
+            return true;
         } else {
             return false;
         }
     }
 
     public void checkoutBook(Book book) {
-        if (checkBookStatus(book)) {
-            collection.put(book, false);
+        if (checkBookStatus(book) && book.isStatus()) {
+            book.setStatus(false);
+            book.addOneCheckOutNum();
+            System.out.println("You have checked out the book");
         } else {
             System.out.println("The book doesn't exist in the Library or is checked out.");
         }
     }
 
-    public int getTotlaBooks() {
+    public int getTotalBooks() {
         return collection.size();
+    }
+
+    public int booksCheckoutNum (Book chosenbook) {
+        return chosenbook.getCheckOutNum();
     }
 
 
