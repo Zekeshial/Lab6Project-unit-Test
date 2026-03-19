@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
 
-
 public class Library {
 
-    ArrayList<Book> collection = new ArrayList<>();
+    private ArrayList<Book> collection;
 
+    public Library() {
+        this.collection = new ArrayList<>();
+    }
 
     public ArrayList<Book> getCollection() {
         return collection;
@@ -23,7 +25,7 @@ public class Library {
         collection.remove(book);
     }
 
-    public boolean checkBookStatus(Book chosenBook) {
+    public boolean checkBookCollectionStatus(Book chosenBook) {
         if (collection.contains(chosenBook)) {
             return true;
         } else {
@@ -32,12 +34,21 @@ public class Library {
     }
 
     public void checkoutBook(Book book) {
-        if (checkBookStatus(book) && book.isStatus()) {
+        if (checkBookCollectionStatus(book) && book.isStatus()) {
             book.setStatus(false);
             book.addOneCheckOutNum();
             System.out.println("You have checked out the book");
         } else {
             System.out.println("The book doesn't exist in the Library or is checked out.");
+        }
+    }
+
+    public void checkInBook(Book chosenBook) {
+        if (checkBookCollectionStatus(chosenBook) && !chosenBook.isStatus()) {
+            chosenBook.setStatus(true);
+            System.out.println("Book has been checked in");
+        } else {
+            System.out.println("The book is still in the Library or doesn't exist.");
         }
     }
 
